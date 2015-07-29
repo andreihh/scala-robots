@@ -1,0 +1,25 @@
+# Some comment at beginning of file
+# Some other comment
+User-agent: * # comment here
+# Another comment
+Disallow: /
+
+
+# Hello
+# Two user-agents in a single group
+User-agent: HHbot # <- first
+# V second
+
+
+User-agent: HHbot2
+
+Disallow: /problema
+Allow:    /problema/text
+
+Disallow: /problema/text/edit # hello
+
+Unkown-directive: /link # random comment
+# comment in between
+Crawl-delay: 5.5 # Crawl-delay test
+
+Sitemap: /sitemap.xml
