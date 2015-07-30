@@ -42,25 +42,16 @@ sealed abstract class Sitemap {
   }
 }
 
-/**
- * Class that represents .xml sitemaps.
- */
 final class SitemapXML(val location: URL, content: String) extends Sitemap {
   protected def parseLinks: Seq[String] =
     (XML.loadString(content) \ "url" \ "loc").map(_.text)
 }
 
-/**
- * Class that represents .rss sitemaps.
- */
 final class SitemapRSS(val location: URL, content: String) extends Sitemap {
   protected def parseLinks: Seq[String] =
     (XML.loadString(content) \ "channel" \ "item" \ "link").map(_.text)
 }
 
-/**
- * Class that represents .txt sitemaps.
- */
 final class SitemapTXT(val location: URL, content: String) extends Sitemap {
   protected def parseLinks: Seq[String] = content.split("\\s")
 }
