@@ -26,4 +26,9 @@ Unrecognized directives are discarded and comments are ignored.
 
 ### Robots inclusion protocol
 
-TO DO: support for Sitemaps.
+Allows creation of sitemaps from raw string data and a given URL as the location
+of the sitemap.
+
+Currently, it supports sitemaps in the following format:
+- .xml
+- .txt
