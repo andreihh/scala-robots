@@ -24,6 +24,8 @@ the Allow directive has priority. Behaviour between wildcard paths is undefined.
 
 Unrecognized directives are discarded and comments are ignored.
 
+Read more about the robots.txt protocol [here](http://www.robotstxt.org/).
+
 ### Robots inclusion protocol
 
 Allows creation of sitemaps from raw string data and a given URL as the location
@@ -32,3 +34,6 @@ of the sitemap.
 Currently, it supports sitemaps in the following format:
 - .xml
 - .txt
+- .rss
+
+Read more about the sitemaps protocol [here](http://www.sitemaps.org).

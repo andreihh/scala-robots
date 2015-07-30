@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Website title</title>
+        <link>http://www.example.com</link>
+        <generator>A1 Sitemap Generator</generator>
+        <lastBuildDate>Tue, 13 Mar 2007 22:28:20 GMT</lastBuildDate>
+        <item>
+            <title>Page 1</title>
+            <link>http://www.example.com/page1.html</link>
+        </item>
+        <item>
+            <title>Page 2</title>
+            <link>http://www.example.com/page2.html</link>
+        </item>
+    </channel>
+</rss>
