@@ -7,7 +7,7 @@ import scala.util.matching.Regex
  * `Allow`, `Disallow`, `Crawl-delay` directives. If there are patterns that
  * both explicitly allow and explicitly disallow a path, the one with greater
  * priority is applied (the priority is equal to the length of the originating
- * path pattern from the robots.txt file).
+ * path pattern from the robotstxt file).
  *
  * @author andrei
  */
@@ -30,13 +30,13 @@ final class RuleSet private (
   def isDisallowed(path: String): Boolean = !isAllowed(path)
 
   /**
-   * @return Crawl-delay in milliseconds or 0 if not specified
+   * Returns crawl-delay in milliseconds or 0 if not specified.
    */
   def delayInMs: Int = (1000 * crawlDelay).toInt
 }
 
 /**
- * Factory object for the [[RuleSet]] class.
+ * Factory object for the [[robots.protocol.exclusion.RuleSet]] class.
  *
  * @author andrei
  */
@@ -63,7 +63,8 @@ object RuleSet {
   }
 
   /**
-   * Creates a [[RuleSet]] from a dictionary of directives.
+   * Creates a [[robots.protocol.exclusion.RuleSet]] from a dictionary of
+   * directives.
    */
   def apply(directives: Map[Directive, Seq[String]]): RuleSet = {
     val allow = directives.getOrElse(Allow, Seq[String]())
@@ -75,7 +76,8 @@ object RuleSet {
   }
 
   /**
-   * @return Empty [[RuleSet]] (equivalent to an empty or absent robotstxt file)
+   * Returns empty [[robots.protocol.exclusion.RuleSet]] (equivalent to an empty
+   * or absent robotstxt file).
    */
   def empty: RuleSet = RuleSet(Map.empty[Directive, Seq[String]])
 }
