@@ -1,0 +1,5 @@
+http://www.example.com/
+http://www.example.com/catalog?item=12&amp;desc=vacation_hawaii
+http://www.example.com/catalog?item=73&amp;desc=vacation_new_zealand
+http://www.example.com/catalog?item=74&amp;desc=vacation_newfoundland
+http://www.example.com/catalog?item=83&amp;desc=vacation_usa
