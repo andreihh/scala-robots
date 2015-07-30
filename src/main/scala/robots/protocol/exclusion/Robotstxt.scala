@@ -1,11 +1,11 @@
-package robotstxt
+package robots.protocol.exclusion
 
 import scala.util.Try
 
 /**
  * @author andrei
  */
-class Robotstxt private (
+final class Robotstxt private (
     agentRules: Map[String, RuleSet],
     val sitemaps: Seq[String]) {
   def wildcardAgent: String = "*"
@@ -59,9 +59,12 @@ object Robotstxt {
 
   private def validDirective(directive: (Directive, String)) = directive match {
     case (_, "") => false
+    case (UserAgent, _) => true
     case (CrawlDelay, value) => Try(value.toDouble >= 0.0).getOrElse(false)
+    case (Allow, _) => true
+    case (Disallow, _) => true
+    case (Sitemap, _) => true
     case (Unkown(_), _) => false
-    case _ => true
   }
 
   private def sitemaps(directives: Seq[(Directive, String)]) = for {

@@ -1,4 +1,4 @@
-package robotstxt
+package robots.protocol.exclusion
 
 /**
  * @author andrei
@@ -27,7 +27,7 @@ case object Sitemap extends Directive {
   def regex = """[sS][iI][tT][eE][mM][aA][pP]"""
 }
 
-case class Unkown(name: String) extends Directive {
+final case class Unkown(name: String) extends Directive {
   def regex = Unkown.regex
 }
 

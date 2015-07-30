@@ -1,4 +1,4 @@
-package robotstxt
+package robots.protocol.exclusion
 
 import org.scalatest.FunSuite
 

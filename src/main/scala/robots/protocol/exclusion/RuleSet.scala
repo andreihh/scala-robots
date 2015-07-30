@@ -1,4 +1,6 @@
-package robotstxt
+package robots.protocol.exclusion
+
+import scala.util.matching.Regex
 
 /**
  * Set containing rules for a specific agent in a robotstxt file. Supports the
@@ -10,8 +12,8 @@ package robotstxt
  * @author andrei
  */
 final class RuleSet private (
-    allowedPaths: Seq[Pattern],
-    disallowedPaths: Seq[Pattern],
+    allowedPaths: Seq[RuleSet.Pattern],
+    disallowedPaths: Seq[RuleSet.Pattern],
     crawlDelay: Double) {
   /**
    * Checks whether the given path is allowed.
@@ -39,6 +41,27 @@ final class RuleSet private (
  * @author andrei
  */
 object RuleSet {
+  private final case class Pattern private (regex: Regex, priority: Int) {
+    def matches(string: String): Boolean = string match {
+      case regex(_*) => true
+      case _ => false
+    }
+  }
+
+  private object Pattern {
+    def apply(pattern: String): Pattern = {
+      val dollar = if (pattern.last == '$') "$" else ""
+      val p = if (dollar == "$") pattern.dropRight(1) else pattern + "*"
+      val regex =
+        ("\\Q" + p.split("\\*", -1).mkString("\\E.*?\\Q") + "\\E" + dollar).r
+      val priority = pattern.length
+      Pattern(regex, priority)
+    }
+
+    implicit def ordering: Ordering[Pattern] =
+      Ordering.by(e => (-e.priority, e.regex.toString()))
+  }
+
   /**
    * Creates a [[RuleSet]] from a dictionary of directives.
    */

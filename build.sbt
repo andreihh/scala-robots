@@ -1,4 +1,4 @@
-name := "scala-robotstxt"
+name := "scala-robots"
 
 version := "1.0"
 
