@@ -16,7 +16,7 @@ sealed abstract class Sitemap {
 
 final class SitemapXML(val location: URL, content: String) extends Sitemap {
   val links: Seq[URL] = {
-    val urls = (XML.loadString(content) \ "urlset" \ "url" \ "loc").map(_.text)
+    val urls = (XML.loadString(content) \ "url" \ "loc").map(_.text)
     Sitemap.filterURLs(location, urls)
   }
 }
@@ -29,6 +29,13 @@ final class SitemapTxt(val location: URL, content: String) extends Sitemap {
 }
 
 object Sitemap {
+  def apply(location: URL, content: String): Sitemap = {
+    val xml = Try(new SitemapXML(location, content))
+    val txt = Try(new SitemapTxt(location, content))
+    val sitemaps = Seq(xml, txt)
+    sitemaps.filter(_.isSuccess).map(_.get).maxBy(_.links.length)
+  }
+
   def makeURLs(urls: Seq[String]): Seq[URL] =
     urls.map(url => Try(new URL(url))).filter(_.isSuccess).map(_.get)
 

@@ -19,13 +19,13 @@ class SitemapTests extends FunSuite {
     val name = "sitemap.xml"
     val content = getSitemapContent(name)
     val location = new URL("http://www.example.com/sitemap.xml")
-    println(new SitemapXML(location, content).links)
+    println(Sitemap(location, content).links)
   }
 
   test("sitemap.txt") {
     val name = "sitemap.txt"
     val content = getSitemapContent(name)
     val location = new URL("http://www.example.com/sitemap.txt")
-    println(new SitemapTxt(location, content).links)
+    println(Sitemap(location, content).links)
   }
 }
