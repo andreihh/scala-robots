@@ -2,7 +2,13 @@ package robots.protocol.exclusion
 
 /**
  * Abstract representation for a supported directive. All supported directives
- * must be implemented as an object that extends this class.
+ * must be implemented as an object that extends this class. If a new directive
+ * is added, it should be appended to
+ * [[robots.protocol.exclusion.Directive.supportedDirectives]] and it's
+ * behaviour should be implemented in [[robots.protocol.exclusion.RuleSet]] if
+ * it is an agent-specific directive (such as `Allow`), or in
+ * [[robots.protocol.exclusion.Robotstxt]] if it is a global directive (such as
+ * `Sitemap`).
  *
  * @author andrei
  */
@@ -57,10 +63,7 @@ object Unkown {
  */
 object Directive {
   /**
-   * Returns a sequence with all supported directives. If a new directive is
-   * added, it must be added in this sequence and the `require` should be
-   * updated. This assures that adding a directive will be dealt with in all
-   * required places at the first run.
+   * Returns a sequence with all supported directives.
    */
   def supportedDirectives: Seq[Directive] =
     Seq(UserAgent, Allow, Disallow, CrawlDelay, Sitemap)

@@ -3,6 +3,7 @@ package robots.protocol.exclusion
 import org.scalatest.FunSuite
 
 import scala.io.Source
+import scala.util.Try
 
 /**
  * @author andrei
@@ -13,16 +14,15 @@ class RobotstxtParserTests extends FunSuite {
     Source.fromInputStream(stream).getLines().mkString("\n")
   }
 
-  def parse(content: String): Robotstxt = {
-    RobotstxtParser(content)
-  }
+  def parse(content: String): Try[Robotstxt] = RobotstxtParser(content)
 
-  def getRobotstxt(name: String): Robotstxt = parse(getRobotstxtContent(name))
+  def getRobotstxt(name: String): Robotstxt =
+    parse(getRobotstxtContent(name)).get
 
   test("dmoz.org/robots.txt") {
     val name = "dmoz.txt"
     val robotstxt = getRobotstxt(name)
-    assert(robotstxt.delayInMs("HHbot") == 1000)
+    assert(robotstxt.getRules("HHbot").delayInMs == 1000)
   }
 
   test("github.com/robots.txt") {
@@ -49,10 +49,10 @@ class RobotstxtParserTests extends FunSuite {
   test("Edge cases") {
     val name = "edge-cases.txt"
     val robotstxt = getRobotstxt(name)
-    assert(robotstxt.delayInMs("HHbot") == 5500)
+    assert(robotstxt.getRules("HHbot").delayInMs == 5500)
     assert(robotstxt.sitemaps == Seq("/sitemap.xml"))
-    assert(robotstxt.isAllowed("HHbot2", "/problema/text/teste"))
-    assert(robotstxt.isDisallowed("HHbot", "/problema/trenuri"))
-    assert(robotstxt.isDisallowed("HHbot2", "/problema/text/edit"))
+    assert(robotstxt.getRules("HHbot2").isAllowed("/problema/text/teste"))
+    assert(robotstxt.getRules("HHbot").isDisallowed("/problema/trenuri"))
+    assert(robotstxt.getRules("HHbot2").isDisallowed("/problema/text/edit"))
   }
 }

@@ -27,23 +27,6 @@ final class Robotstxt private (
     .get(agent)
     .orElse(agentRules.get(wildcardAgent))
     .getOrElse(RuleSet.empty)
-
-  /**
-   * Checks if the given `path` is allowed for the given `agent`.
-   */
-  def isAllowed(agent: String, path: String): Boolean =
-    getRules(agent).isAllowed(path)
-
-  /**
-   * Checks if the given `path` is disallowed for the given `agent`.
-   */
-  def isDisallowed(agent: String, path: String): Boolean =
-    getRules(agent).isDisallowed(path)
-
-  /**
-   * Returns the crawl delay for the given `agent` in milliseconds.
-   */
-  def delayInMs(agent: String): Double = getRules(agent).delayInMs
 }
 
 /**

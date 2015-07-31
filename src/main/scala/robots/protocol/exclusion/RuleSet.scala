@@ -67,9 +67,9 @@ object RuleSet {
    * directives.
    */
   def apply(directives: Map[Directive, Seq[String]]): RuleSet = {
-    val allow = directives.getOrElse(Allow, Seq[String]())
+    val allow = directives.getOrElse(Allow, Seq.empty[String])
       .distinct.map((p: String) => Pattern(p)).sorted
-    val disallow = directives.getOrElse(Disallow, Seq[String]())
+    val disallow = directives.getOrElse(Disallow, Seq.empty[String])
       .distinct.map((p: String) => Pattern(p)).sorted
     val delay = directives.getOrElse(CrawlDelay, Seq("0")).map(_.toDouble).max
     new RuleSet(allow, disallow, delay)
