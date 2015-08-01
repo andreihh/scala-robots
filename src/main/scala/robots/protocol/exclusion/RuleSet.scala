@@ -3,11 +3,10 @@ package robots.protocol.exclusion
 import scala.util.matching.Regex
 
 /**
- * Set containing rules for a specific agent in a robotstxt file. Supports the
- * `Allow`, `Disallow`, `Crawl-delay` directives. If there are patterns that
- * both explicitly allow and explicitly disallow a path, the one with greater
- * priority is applied (the priority is equal to the length of the originating
- * path pattern from the robotstxt file).
+ * Set containing rules for a specific agent in a robotstxt file. If there are
+ * patterns that both explicitly allow and explicitly disallow a path, the one
+ * with greater priority is applied (the priority is equal to the length of the
+ * originating path pattern from the robotstxt file).
  *
  * @author andrei
  */

@@ -81,12 +81,9 @@ object Robotstxt {
   } yield v
 
   /**
-   * Builds a [[robots.protocol.exclusion.Robotstxt]] from parsed directives. It
-   * is important to feed as argument directly the output from the
-   * [[robots.protocol.exclusion.RobotstxtParser]], as it only returns the
-   * parsed directives in order, but does not establish groups of rules
-   * according to the robotstxt format. This task belongs to this factory
-   * object.
+   * Builds a [[robots.protocol.exclusion.Robotstxt]] from parsed directives.
+   * The directives should appear in the same order as in the robotstxt file to
+   * build the correct rules.
    *
    * @param directives Parsed directives from a raw string
    * @return Resulting [[robots.protocol.exclusion.Robotstxt]]

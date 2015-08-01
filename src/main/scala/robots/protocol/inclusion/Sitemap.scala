@@ -22,14 +22,7 @@ sealed abstract class Sitemap {
    * directory where the sitemap is located. It filters the URLs returned by the
    * `parseLinks` method.
    */
-  final val links: Seq[URL] = filterURLs(parseLinks)
-
-  /**
-   * Returns all raw-URLs parsed from the sitemap.
-   */
-  protected def parseLinks: Seq[String]
-
-  private def filterURLs(rawURLs: Seq[String]): Seq[URL] = {
+  final val links: Seq[URL] = {
     val rootDirectory = location.toString.reverse.dropWhile(_ != '/').reverse
 
     def makeURLs(urls: Seq[String]): Seq[URL] =
@@ -38,8 +31,13 @@ sealed abstract class Sitemap {
     def validURL(url: URL): Boolean =
       url.toString.startsWith(rootDirectory)
 
-    makeURLs(rawURLs).filter(validURL)
+    makeURLs(parseLinks).filter(validURL)
   }
+
+  /**
+   * Returns all raw URLs parsed from the sitemap.
+   */
+  protected def parseLinks: Seq[String]
 }
 
 final class SitemapXML(val location: URL, content: String) extends Sitemap {
@@ -67,7 +65,7 @@ object Sitemap {
    *
    * @param location URL of the sitemap
    * @param content Raw string content of the sitemap
-   * @return Concetre [[robots.protocol.inclusion.Sitemap]] automatically
+   * @return Concrete [[robots.protocol.inclusion.Sitemap]] automatically
    * identified according to the raw content.
    */
   def apply(location: URL, content: String): Sitemap = {

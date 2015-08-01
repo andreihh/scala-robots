@@ -25,9 +25,9 @@ object RobotstxtParser extends RegexParsers {
   private val rules: Parser[Robotstxt] = content ^^ (Robotstxt(_))
 
   /**
-   * Parses the `input` string and returns the resulting
-   * [[robots.protocol.exclusion.Robotstxt]], or throws an exception if the
-   * parse fails.
+   * Parses the `input` string and returns a 'Try' containing the resulting
+   * [[robots.protocol.exclusion.Robotstxt]], or the exception which caused the
+   * parse to fail.
    */
   def apply(input: String): Try[Robotstxt] = Try(parse(rules, input).get)
 }
