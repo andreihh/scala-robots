@@ -19,20 +19,38 @@ class SitemapTests extends FunSuite {
     val name = "sitemap.xml"
     val content = getSitemapContent(name)
     val location = new URL("http://www.example.com/sitemap.xml")
-    println(Sitemap(location, content).links)
+    val links = Sitemap(location, content).links.map(_.toString)
+    assert(links.sorted ==
+      Seq("http://www.example.com/",
+        "http://www.example.com/catalog?item=12&desc=vacation_hawaii",
+        "http://www.example.com/catalog?item=73&desc=vacation_new_zealand",
+        "http://www.example.com/catalog?item=74&desc=vacation_newfoundland",
+        "http://www.example.com/catalog?item=83&desc=vacation_usa").sorted
+    )
   }
 
   test("sitemap.rss") {
     val name = "sitemap.rss"
     val content = getSitemapContent(name)
     val location = new URL("http://www.example.com/sitemap.rss")
-    println(Sitemap(location, content).links)
+    val links = Sitemap(location, content).links.map(_.toString)
+    assert(links.sorted ==
+      Seq("http://www.example.com/page1.html",
+        "http://www.example.com/page2.html").sorted
+    )
   }
 
   test("sitemap.txt") {
     val name = "sitemap.txt"
     val content = getSitemapContent(name)
     val location = new URL("http://www.example.com/sitemap.txt")
-    println(Sitemap(location, content).links)
+    val links = Sitemap(location, content).links.map(_.toString)
+    assert(links.sorted ==
+      Seq("http://www.example.com/",
+        "http://www.example.com/catalog?item=12&desc=vacation_hawaii",
+        "http://www.example.com/catalog?item=73&desc=vacation_new_zealand",
+        "http://www.example.com/catalog?item=74&desc=vacation_newfoundland",
+        "http://www.example.com/catalog?item=83&desc=vacation_usa").sorted
+    )
   }
 }

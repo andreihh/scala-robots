@@ -26,7 +26,7 @@ sealed abstract class Sitemap {
     val rootDirectory = location.toString.reverse.dropWhile(_ != '/').reverse
 
     def makeURLs(urls: Seq[String]): Seq[URL] =
-      urls.map(url => Try(new URL(url))).filter(_.isSuccess).map(_.get)
+      urls.flatMap(url => Try(new URL(url)).toOption)
 
     def validURL(url: URL): Boolean =
       url.toString.startsWith(rootDirectory)
@@ -73,6 +73,6 @@ object Sitemap {
     val rss = Try(new SitemapRSS(location, content))
     val txt = Try(new SitemapTXT(location, content))
     val sitemaps = Seq(xml, rss, txt)
-    sitemaps.filter(_.isSuccess).map(_.get).maxBy(_.links.length)
+    sitemaps.flatMap(_.toOption).maxBy(_.links.length)
   }
 }

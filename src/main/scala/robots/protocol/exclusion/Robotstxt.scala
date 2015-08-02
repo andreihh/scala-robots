@@ -89,6 +89,7 @@ object Robotstxt {
    * @return Resulting [[robots.protocol.exclusion.Robotstxt]]
    */
   def apply(directives: Seq[(Directive, String)]): Robotstxt = {
+    println(directives)
     val validDirectives = directives.filter(validDirective)
     new Robotstxt(agentRules(validDirectives), sitemaps(validDirectives))
   }
