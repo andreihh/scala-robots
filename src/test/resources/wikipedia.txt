@@ -51,7 +51,7 @@ Disallow: /
 User-agent: Fetch
 Disallow: /
 
-User-agent: Offline-Explorer
+User-agent: Offline Explorer
 Disallow: /
 
 User-agent: Teleport
@@ -84,7 +84,7 @@ Disallow: /
 User-agent: ZyBORG
 Disallow: /
 
-User-agent: Download-Ninja
+User-agent: Download Ninja
 Disallow: /
 
 # Misbehaving: requests much too fast:
@@ -485,7 +485,7 @@ Disallow: /wiki/Wikipedia:WikiProject_Spam
 Disallow: /wiki/Wikipedia_talk:WikiProject_Spam
 #
 # Folks get annoyed when XfD discussions end up the number 1 google hit for
-# their name.
+# their name. 
 # http://bugzilla.wikimedia.org/show_bug.cgi?id=4776
 Disallow: /wiki/Wikipedia:Articles_for_deletion/
 Disallow: /wiki/Wikipedia%3AArticles_for_deletion/

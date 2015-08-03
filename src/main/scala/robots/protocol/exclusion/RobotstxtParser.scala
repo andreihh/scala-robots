@@ -1,5 +1,6 @@
 package robots.protocol.exclusion
 
+import scala.util.matching._
 import scala.util.parsing.combinator.RegexParsers
 import scala.util.Try
 
@@ -11,9 +12,25 @@ import scala.util.Try
 object RobotstxtParser extends RegexParsers {
   override protected val whiteSpace = """(\s|#.*+)+""".r
 
+  private def regexMatch(r: Regex): Parser[Regex.Match] =
+    new Parser[Regex.Match] {
+      def apply(in: Input) = {
+        val source = in.source
+        val offset = in.offset
+        val start = handleWhiteSpace(source, offset)
+        r.findPrefixMatchOf(source.subSequence(start, source.length)) match {
+          case Some(matched) =>
+            Success(matched, in.drop(start + matched.end - offset))
+          case None =>
+            Failure("string matching regex `" + r+ "' expected but `" +
+              in.first + "' found", in.drop(start - offset))
+        }
+      }
+    }
+
   private val directiveValue: Parser[String] =
-    """: *+([\w\Q-.~:/?#[]@!$&'()*+,;=\E]*+)""".r ^^ { matched =>
-      matched.tail.dropWhile(_ == ' ')
+    regexMatch(""": *+(.*+)""".r) ^^ {
+      _.group(1).replaceAll(" ++#.*+", "")
     }
 
   private val directive: Parser[~[Directive, String]] = {

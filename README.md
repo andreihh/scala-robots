@@ -25,9 +25,6 @@ is undefined.
 
 Unrecognized directives are discarded and comments are ignored.
 
-Currently, all directive values must not containg spaces (including the
-user-agent strings) in order to parse the file correctly.
-
 Read more about the robots.txt protocol [here](http://www.robotstxt.org/).
 
 ### Robots inclusion protocol
