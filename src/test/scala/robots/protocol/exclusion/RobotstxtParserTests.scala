@@ -30,7 +30,7 @@ class RobotstxtParserTests extends FunSuite {
   test("github.com/robots.txt") {
     val name = "github.txt"
     val robotstxt = getRobotstxt(name)
-    val rules = robotstxt.getRules("HHbot")
+    val rules = robotstxt.getRules("CCBot")
     assert(rules
       .isAllowed("/andrei-heidelbacher/scala-robots/tree/master/src"))
     assert(rules

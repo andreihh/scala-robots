@@ -17,8 +17,6 @@ final class RuleSet private (
   /**
    * Checks whether the given path is allowed.
    */
-  println(allowedPaths)
-  println(disallowedPaths)
   def isAllowed(path: String): Boolean = {
     val allowed = allowedPaths.find(_.matches(path)).map(_.priority)
     val disallowed = disallowedPaths.find(_.matches(path)).map(_.priority)

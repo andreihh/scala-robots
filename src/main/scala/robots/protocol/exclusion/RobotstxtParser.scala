@@ -11,13 +11,15 @@ import scala.util.Try
 object RobotstxtParser extends RegexParsers {
   override protected val whiteSpace = """(\s|#.*+)+""".r
 
-  private val value: Parser[String] = """([\w\Q-.~:/?#[]@!$&'()*+,;=\E]*+)""".r
+  private val directiveValue: Parser[String] =
+    """: *+([\w\Q-.~:/?#[]@!$&'()*+,;=\E]*+)""".r ^^ { matched =>
+      matched.tail.dropWhile(_ == ' ')
+    }
 
   private val directive: Parser[~[Directive, String]] = {
     val parsers = Directive.supportedDirectives.map(d => regex(d.regex.r)) :+
       regex(Unkown.regex.r)
-    ((parsers.reduce(_ | _) ^^ { case Directive(d) => d }) <~ ":") ~
-      (value.? ^^ (_.getOrElse("")))
+    (parsers.reduce(_ | _) ^^ { case Directive(d) => d }) ~ directiveValue
   }
 
   private val content: Parser[Seq[(Directive, String)]] =

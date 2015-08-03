@@ -51,7 +51,7 @@ Disallow: /
 User-agent: Fetch
 Disallow: /
 
-User-agent: Offline Explorer
+User-agent: Offline-Explorer
 Disallow: /
 
 User-agent: Teleport
@@ -84,7 +84,7 @@ Disallow: /
 User-agent: ZyBORG
 Disallow: /
 
-User-agent: Download Ninja
+User-agent: Download-Ninja
 Disallow: /
 
 # Misbehaving: requests much too fast:
