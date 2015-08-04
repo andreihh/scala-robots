@@ -10,4 +10,6 @@ libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % 
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "1.0.3"
 
+libraryDependencies += "org.ccil.cowan.tagsoup" % "tagsoup" % "1.2.1"
+
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.3" % "test"

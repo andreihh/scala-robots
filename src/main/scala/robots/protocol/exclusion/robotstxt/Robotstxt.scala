@@ -1,11 +1,11 @@
-package robots.protocol.exclusion
+package robots.protocol.exclusion.robotstxt
 
 import scala.util.Try
 
 /**
  * Represents the contents of a robotstxt file. Internally, the data is kept as
- * a map from user-agents to [[robots.protocol.exclusion.RuleSet]] and a
- * sequence of sitemaps.
+ * a map from user-agents to [[robots.protocol.exclusion.robotstxt.RuleSet]] and
+ * a sequence of sitemaps.
  *
  * @param sitemaps Sequence containing all sitemaps listed in this robotstxt
  *
@@ -25,8 +25,8 @@ final class Robotstxt private (
   def userAgents: Seq[String] = agentRules.keys.toSeq
 
   /**
-   * Returns the [[robots.protocol.exclusion.RuleSet]] that applies to the given
-   * `agent`.
+   * Returns the [[robots.protocol.exclusion.robotstxt.RuleSet]] that applies to
+   * the given `agent`.
    */
   def getRules(agent: String): RuleSet = agentRules
     .get(agent)
@@ -35,7 +35,8 @@ final class Robotstxt private (
 }
 
 /**
- * Factory object for the [[robots.protocol.exclusion.Robotstxt]] class.
+ * Factory object for the [[robots.protocol.exclusion.robotstxt.Robotstxt]]
+ * class.
  */
 object Robotstxt {
   private def agentRules(directives: Seq[(Directive, String)]) = {
@@ -86,12 +87,12 @@ object Robotstxt {
   } yield v
 
   /**
-   * Builds a [[robots.protocol.exclusion.Robotstxt]] from parsed directives.
-   * The directives should appear in the same order as in the robotstxt file to
-   * build the correct rules.
+   * Builds a [[robots.protocol.exclusion.robotstxt.Robotstxt]] from parsed
+   * directives. The directives should appear in the same order as in the
+   * robotstxt file to build the correct rules.
    *
    * @param directives Parsed directives from a raw string
-   * @return Resulting [[robots.protocol.exclusion.Robotstxt]]
+   * @return Resulting [[robots.protocol.exclusion.robotstxt.Robotstxt]]
    */
   def apply(directives: Seq[(Directive, String)]): Robotstxt = {
     val validDirectives = directives.filter(validDirective)

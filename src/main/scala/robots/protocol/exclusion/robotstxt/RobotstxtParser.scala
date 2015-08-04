@@ -1,8 +1,8 @@
-package robots.protocol.exclusion
+package robots.protocol.exclusion.robotstxt
 
+import scala.util.Try
 import scala.util.matching._
 import scala.util.parsing.combinator.RegexParsers
-import scala.util.Try
 
 /**
  * Parser for robotstxt files from raw strings.
@@ -46,8 +46,8 @@ object RobotstxtParser extends RegexParsers {
 
   /**
    * Parses the `input` string and returns a 'Try' containing the resulting
-   * [[robots.protocol.exclusion.Robotstxt]], or the exception which caused the
-   * parse to fail.
+   * [[robots.protocol.exclusion.robotstxt.Robotstxt]], or the exception which
+   * caused the parse to fail.
    */
   def apply(input: String): Try[Robotstxt] = Try(parse(rules, input).get)
 }

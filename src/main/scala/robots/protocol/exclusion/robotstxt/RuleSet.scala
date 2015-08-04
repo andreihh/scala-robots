@@ -1,4 +1,4 @@
-package robots.protocol.exclusion
+package robots.protocol.exclusion.robotstxt
 
 import scala.util.matching.Regex
 
@@ -35,7 +35,7 @@ final class RuleSet private (
 }
 
 /**
- * Factory object for the [[robots.protocol.exclusion.RuleSet]] class.
+ * Factory object for the [[robots.protocol.exclusion.robotstxt.RuleSet]] class.
  *
  * @author andrei
  */
@@ -62,8 +62,8 @@ object RuleSet {
   }
 
   /**
-   * Creates a [[robots.protocol.exclusion.RuleSet]] from a dictionary of
-   * directives.
+   * Creates a [[robots.protocol.exclusion.robotstxt.RuleSet]] from a dictionary
+   * of directives.
    */
   def apply(directives: Map[Directive, Seq[String]]): RuleSet = {
     val allow = directives.getOrElse(Allow, Seq.empty[String])
@@ -75,8 +75,8 @@ object RuleSet {
   }
 
   /**
-   * Returns empty [[robots.protocol.exclusion.RuleSet]] (equivalent to an empty
-   * or absent robotstxt file).
+   * Returns empty [[robots.protocol.exclusion.robotstxt.RuleSet]] (equivalent
+   * an empty or absent robotstxt file).
    */
   def empty: RuleSet = RuleSet(Map.empty[Directive, Seq[String]])
 }

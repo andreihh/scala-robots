@@ -1,14 +1,15 @@
-package robots.protocol.exclusion
+package robots.protocol.exclusion.robotstxt
 
 /**
  * Abstract representation for a supported directive. All supported directives
  * must be implemented as an object that extends this class. If a new directive
  * is added, it should be appended to
- * [[robots.protocol.exclusion.Directive.supportedDirectives]] and it's
- * behaviour should be implemented in [[robots.protocol.exclusion.RuleSet]] if
- * it is an agent-specific directive (such as `Allow`), or in
- * [[robots.protocol.exclusion.Robotstxt]] if it is a global directive (such as
- * `Sitemap`).
+ * [[robots.protocol.exclusion.robotstxt.Directive.supportedDirectives]] and
+ * it's behaviour should be implemented in
+ * [[robots.protocol.exclusion.robotstxt.RuleSet]] if it is an agent-specific
+ * directive (such as `Allow`), or in
+ * [[robots.protocol.exclusion.robotstxt.Robotstxt]] if it is a global directive
+ * (such as `Sitemap`).
  *
  * @author andrei
  */
@@ -49,17 +50,17 @@ final case class Unkown(name: String) extends Directive {
 }
 
 /**
- * Companion object for [[robots.protocol.exclusion.Unkown]] class that allows
- * parsing the robotstxt file without failing when it encounters an unkown
- * directive.
+ * Companion object for [[robots.protocol.exclusion.robotstxt.Unkown]] class
+ * that allows parsing the robotstxt file without failing when it encounters
+ * an unkown directive.
  */
 object Unkown {
   def regex = """[\w-]*+"""
 }
 
 /**
- * Companion object for the [[robots.protocol.exclusion.Directive]] class
- * containing utilities for parsing.
+ * Companion object for the [[robots.protocol.exclusion.robotstxt.Directive]]
+ * class containing utilities for parsing.
  */
 object Directive {
   /**

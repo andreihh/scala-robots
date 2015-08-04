@@ -4,6 +4,8 @@ Library containing utilities for the robots exclusion and inclusion protocols.
 
 ### Robots exclusion protocol
 
+#### Robots.txt
+
 The library offers facilities for parsing robots.txt files from raw strings and
 building an abstract robots.txt file representation containing all the parsed
 rules.
@@ -26,6 +28,20 @@ is undefined.
 Unrecognized directives are discarded and comments are ignored.
 
 Read more about the robots.txt protocol [here](http://www.robotstxt.org/).
+
+#### Meta-tags
+
+HTML documents can be parsed as scala XML documents and extraction of outlinks
+and robot-specific meta-tags is possible. Read more about the robot meta-tags
+[here](http://www.robotstxt.org/meta.html).
+
+Currently, supported meta-tags are:
+- all
+- none
+- follow
+- nofollow
+- index
+- noindex
 
 ### Robots inclusion protocol
 
