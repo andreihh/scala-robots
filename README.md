@@ -32,8 +32,7 @@ Read more about the robots.txt protocol [here](http://www.robotstxt.org/).
 #### Meta-tags
 
 HTML documents can be parsed as scala XML documents and extraction of outlinks
-and robot-specific meta-tags is possible. Read more about the robot meta-tags
-[here](http://www.robotstxt.org/meta.html).
+and robot-specific meta-tags is possible.
 
 Currently, supported meta-tags are:
 - all
@@ -42,6 +41,8 @@ Currently, supported meta-tags are:
 - nofollow
 - index
 - noindex
+
+Read more about the robot meta-tags [here](http://www.robotstxt.org/meta.html).
 
 ### Robots inclusion protocol
 
