@@ -21,9 +21,8 @@ object HTML {
    * Returns [[scala.xml.Node]] obtained from parsing this html saved as a
    * string with a specific encoding (by default UTF-8).
    */
-  def parse(html: String, encoding: String = "UTF-8"): Node = {
-    this.parse(html.getBytes(encoding))
-  }
+  def parse(html: String, encoding: String = "UTF-8"): Node =
+    parse(html.getBytes(encoding))
 
   /**
    * Returns [[scala.xml.Node]] obtained from parsing this html saved as a byte

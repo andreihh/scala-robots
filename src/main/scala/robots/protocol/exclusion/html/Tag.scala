@@ -58,6 +58,9 @@ object Tag {
     case NoIndex => true
   })
 
+  /**
+   * Returns a sequence of tags from a raw string.
+   */
   def parse(content: String): Seq[Tag] =
     content.split("""[^\w]""")
       .flatMap(name => supportedTags.find(tag => name.matches(tag.nameRegex)))
