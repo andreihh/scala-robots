@@ -7,11 +7,11 @@ Disallow: /
 
 # Hello
 # Two user-agents in a single group
-User-agent: HHbot # <- first
+User-agent: HHbot  # <- first
 # V second
 
 
-User-agent: HHbot2
+User-agent:    HHbot2    # coomment here
 
 Disallow: /problema
 Allow:    /problema/text

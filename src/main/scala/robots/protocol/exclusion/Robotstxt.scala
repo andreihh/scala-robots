@@ -20,6 +20,11 @@ final class Robotstxt private (
   def wildcardAgent: String = "*"
 
   /**
+   * Returns all user-agents mentioned in this robotstxt.
+   */
+  def userAgents: Seq[String] = agentRules.keys.toSeq
+
+  /**
    * Returns the [[robots.protocol.exclusion.RuleSet]] that applies to the given
    * `agent`.
    */

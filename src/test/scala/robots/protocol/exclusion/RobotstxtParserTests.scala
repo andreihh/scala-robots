@@ -73,5 +73,6 @@ class RobotstxtParserTests extends FunSuite {
     assert(robotstxt.getRules("HHbot2").isAllowed("/problema/text/teste"))
     assert(robotstxt.getRules("HHbot").isDisallowed("/problema/trenuri"))
     assert(robotstxt.getRules("HHbot2").isDisallowed("/problema/text/edit"))
+    assert(robotstxt.userAgents.sorted == Seq("*", "HHbot", "HHbot2").sorted)
   }
 }

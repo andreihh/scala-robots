@@ -30,7 +30,7 @@ object RobotstxtParser extends RegexParsers {
 
   private val directiveValue: Parser[String] =
     regexMatch(""": *+(.*+)""".r) ^^ {
-      _.group(1).replaceAll(" ++#.*+", "")
+      _.group(1).replaceAll(" ++#.*+", "").trim
     }
 
   private val directive: Parser[~[Directive, String]] = {
