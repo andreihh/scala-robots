@@ -17,6 +17,11 @@ sealed abstract class Sitemap {
   val location: URL
 
   /**
+   * Returns whether this sitemap contains links to other sitemaps or not.
+   */
+  def isSitemapIndex: Boolean
+
+  /**
    * All valid links at which the sitemap points to. A link is valid if it has
    * correct URL syntax and points to a page placed somewhere inside the
    * directory where the sitemap is located. It filters the URLs returned by the
@@ -41,21 +46,29 @@ sealed abstract class Sitemap {
 }
 
 final class SitemapIndex(val location: URL, content: String) extends Sitemap {
+  def isSitemapIndex: Boolean = true
+
   protected def parseLinks: Seq[String] =
     (XML.loadString(content) \\ "sitemap" \ "loc").map(_.text)
 }
 
 final class SitemapXML(val location: URL, content: String) extends Sitemap {
+  def isSitemapIndex: Boolean = false
+
   protected def parseLinks: Seq[String] =
     (XML.loadString(content) \\ "url" \ "loc").map(_.text)
 }
 
 final class SitemapRSS(val location: URL, content: String) extends Sitemap {
+  def isSitemapIndex: Boolean = false
+
   protected def parseLinks: Seq[String] =
     (XML.loadString(content) \\ "item" \ "link").map(_.text)
 }
 
 final class SitemapTXT(val location: URL, content: String) extends Sitemap {
+  def isSitemapIndex: Boolean = false
+
   protected def parseLinks: Seq[String] = content.split("""\s""")
 }
 
@@ -66,7 +79,7 @@ object Sitemap {
   /**
    * Automatically recognizes the sitemap format by returning the one which
    * returns the most valid links. If a new sitemap format is added, it should
-   * also be updated in this method.
+   * also be updated in this method. The content must be UTF-8 encoded.
    *
    * @param location URL of the sitemap
    * @param content Raw string content of the sitemap
@@ -81,4 +94,10 @@ object Sitemap {
     val sitemaps = Seq(index, xml, rss, txt)
     sitemaps.flatMap(_.toOption).maxBy(_.links.length)
   }
+
+  /**
+   * Returns a sitemap by converting the `content` to a UTF-8 encoded string.
+   */
+  def apply(location: URL, content: Array[Byte]): Sitemap =
+    apply(location, new String(content, "UTF-8"))
 }
