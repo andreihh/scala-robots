@@ -1,6 +1,8 @@
 # scala-robots
 
 Library containing utilities for the robots exclusion and inclusion protocols.
+To use the library, download the JAR from the latest release and include it in
+your project.
 
 ### Robots exclusion protocol
 
