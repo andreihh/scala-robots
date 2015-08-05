@@ -13,7 +13,7 @@ import scala.xml.parsing.NoBindingFactoryAdapter
  *
  * @author andrei
  */
-object HTML {
+object HTMLParser {
   private val adapter = new NoBindingFactoryAdapter()
   private val parser = (new SAXFactoryImpl).newSAXParser
 
@@ -21,14 +21,14 @@ object HTML {
    * Returns [[scala.xml.Node]] obtained from parsing this html saved as a
    * string with a specific encoding (by default UTF-8).
    */
-  def parse(html: String, encoding: String = "UTF-8"): Node =
-    parse(html.getBytes(encoding))
+  def apply(html: String, encoding: String = "UTF-8"): Node =
+    apply(html.getBytes(encoding))
 
   /**
    * Returns [[scala.xml.Node]] obtained from parsing this html saved as a byte
    * array.
    */
-  def parse(html: Array[Byte]): Node = {
+  def apply(html: Array[Byte]): Node = {
     val stream = new ByteArrayInputStream(html)
     val source = new InputSource(stream)
     adapter.loadXML(source, parser)

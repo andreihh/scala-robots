@@ -54,11 +54,11 @@ object Page {
    * Returns a page parsed from the `content` and located at the given `url`.
    */
   def apply(url: URL, content: String, encoding: String = "UTF-8"): Page =
-    new Page(url, HTML.parse(content, encoding))
+    new Page(url, HTMLParser(content, encoding))
 
   /**
    * Returns a page parsed from the `content` and located at the given `url`.
    */
   def apply(url: URL, content: Array[Byte]): Page =
-    new Page(url, HTML.parse(content))
+    new Page(url, HTMLParser(content))
 }

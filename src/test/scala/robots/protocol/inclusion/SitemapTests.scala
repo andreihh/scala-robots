@@ -15,6 +15,20 @@ class SitemapTests extends FunSuite {
     Source.fromInputStream(stream).getLines().mkString("\n")
   }
 
+  test("sitemapindex.xml") {
+    val name = "sitemapindex.xml"
+    val content = getSitemapContent(name)
+    val location = new URL("http://www.example.com/sitemap.xml")
+    val links = Sitemap(location, content).links.map(_.toString)
+    assert(links.sorted ==
+      Seq("http://www.example.com/",
+        "http://www.example.com/catalog?item=12&desc=vacation_hawaii",
+        "http://www.example.com/catalog?item=73&desc=vacation_new_zealand",
+        "http://www.example.com/catalog?item=74&desc=vacation_newfoundland",
+        "http://www.example.com/catalog?item=83&desc=vacation_usa").sorted
+    )
+  }
+
   test("sitemap.xml") {
     val name = "sitemap.xml"
     val content = getSitemapContent(name)

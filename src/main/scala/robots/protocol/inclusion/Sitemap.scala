@@ -40,18 +40,23 @@ sealed abstract class Sitemap {
   protected def parseLinks: Seq[String]
 }
 
+final class SitemapIndex(val location: URL, content: String) extends Sitemap {
+  protected def parseLinks: Seq[String] =
+    (XML.loadString(content) \\ "sitemap" \ "loc").map(_.text)
+}
+
 final class SitemapXML(val location: URL, content: String) extends Sitemap {
   protected def parseLinks: Seq[String] =
-    (XML.loadString(content) \ "url" \ "loc").map(_.text)
+    (XML.loadString(content) \\ "url" \ "loc").map(_.text)
 }
 
 final class SitemapRSS(val location: URL, content: String) extends Sitemap {
   protected def parseLinks: Seq[String] =
-    (XML.loadString(content) \ "channel" \ "item" \ "link").map(_.text)
+    (XML.loadString(content) \\ "item" \ "link").map(_.text)
 }
 
 final class SitemapTXT(val location: URL, content: String) extends Sitemap {
-  protected def parseLinks: Seq[String] = content.split("\\s")
+  protected def parseLinks: Seq[String] = content.split("""\s""")
 }
 
 /**
@@ -69,10 +74,11 @@ object Sitemap {
    * identified according to the raw content.
    */
   def apply(location: URL, content: String): Sitemap = {
+    val index = Try(new SitemapIndex(location, content))
     val xml = Try(new SitemapXML(location, content))
     val rss = Try(new SitemapRSS(location, content))
     val txt = Try(new SitemapTXT(location, content))
-    val sitemaps = Seq(xml, rss, txt)
+    val sitemaps = Seq(index, xml, rss, txt)
     sitemaps.flatMap(_.toOption).maxBy(_.links.length)
   }
 }

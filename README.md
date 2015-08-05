@@ -54,4 +54,8 @@ Currently, it supports sitemaps in the following format:
 - .txt
 - .rss
 
+Sitemap indexes are also supported, but all the linked sitemaps must be
+somewhere inside the same directory as the sitemap index in order to be
+considered a valid link.
+
 Read more about the sitemaps protocol [here](http://www.sitemaps.org).

@@ -98,4 +98,16 @@ object Robotstxt {
     val validDirectives = directives.filter(validDirective)
     new Robotstxt(agentRules(validDirectives), sitemaps(validDirectives))
   }
+
+  /**
+   * Returns a [[robots.protocol.exclusion.robotstxt.Robotstxt]] parsed from the
+   * given byte array. The content must be a UTF-8 encoded string.
+   */
+  def apply(content: Array[Byte]): Robotstxt =
+    RobotstxtParser(new String(content, "UTF-8")).getOrElse(empty)
+
+  /**
+   * Returns the equivalent of an empty robotstxt file.
+   */
+  def empty: Robotstxt = apply(Nil)
 }
