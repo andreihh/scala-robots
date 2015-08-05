@@ -107,6 +107,13 @@ object Robotstxt {
     RobotstxtParser(new String(content, "UTF-8")).getOrElse(empty)
 
   /**
+   * Returns a [[robots.protocol.exclusion.robotstxt.Robotstxt]] parsed from the
+   * given string. The content must be UTF-8 encoded.
+   */
+  def apply(content: String): Robotstxt =
+    RobotstxtParser(content).getOrElse(empty)
+
+  /**
    * Returns the equivalent of an empty robotstxt file.
    */
   def empty: Robotstxt = apply(Nil)
