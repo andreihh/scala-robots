@@ -1,9 +1,9 @@
 package robots.protocol.exclusion.html
 
-import java.io.ByteArrayInputStream
-
 import org.ccil.cowan.tagsoup.jaxp.SAXFactoryImpl
 import org.xml.sax.InputSource
+
+import java.io.ByteArrayInputStream
 
 import scala.xml.Node
 import scala.xml.parsing.NoBindingFactoryAdapter
@@ -11,7 +11,7 @@ import scala.xml.parsing.NoBindingFactoryAdapter
 /**
  * Object used for parsing raw html pages to xml.
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 object HTMLParser {
   private val adapter = new NoBindingFactoryAdapter()

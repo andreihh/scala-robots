@@ -5,7 +5,7 @@ package robots.protocol.exclusion.html
  * new tag is added, it should be appended to the
  * [[robots.protocol.exclusion.html.Tag.supportedTags]] sequence.
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 sealed abstract class Tag {
   /**

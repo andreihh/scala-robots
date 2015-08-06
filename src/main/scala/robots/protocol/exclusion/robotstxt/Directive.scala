@@ -11,7 +11,7 @@ package robots.protocol.exclusion.robotstxt
  * [[robots.protocol.exclusion.robotstxt.Robotstxt]] if it is a global directive
  * (such as `Sitemap`).
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 sealed abstract class Directive {
   /**
@@ -51,8 +51,8 @@ final case class Unkown(name: String) extends Directive {
 
 /**
  * Companion object for [[robots.protocol.exclusion.robotstxt.Unkown]] class
- * that allows parsing the robotstxt file without failing when it encounters
- * an unkown directive.
+ * that allows parsing the robotstxt file without failing when it encounters an
+ * unkown directive.
  */
 object Unkown {
   def regex = """[\w-]*+"""

@@ -6,7 +6,7 @@ import scala.io.Source
 import scala.util.Try
 
 /**
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 class RobotstxtParserTests extends FunSuite {
   def getRobotstxtContent(name: String): String = {

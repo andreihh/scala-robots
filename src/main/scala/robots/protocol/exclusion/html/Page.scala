@@ -10,9 +10,9 @@ import scala.xml.Node
  *
  * @param url Location of the page
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
-class Page private (val url: URL, content: Node) {
+final class Page private (val url: URL, content: Node) {
   private def getMetaTags(robotName: String): Option[Seq[Tag]] = {
     val metaTags = for {
       tag <- content \ "head" \ "meta"

@@ -7,7 +7,7 @@ import java.net.URL
 import scala.io.Source
 
 /**
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 class SitemapTests extends FunSuite {
   def getSitemapContent(name: String): String = {

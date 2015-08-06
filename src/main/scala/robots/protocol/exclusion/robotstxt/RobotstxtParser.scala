@@ -1,13 +1,13 @@
 package robots.protocol.exclusion.robotstxt
 
-import scala.util.Try
 import scala.util.matching._
 import scala.util.parsing.combinator.RegexParsers
+import scala.util.Try
 
 /**
  * Parser for robotstxt files from raw strings.
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 object RobotstxtParser extends RegexParsers {
   override protected val whiteSpace = """(\s|#.*+)+""".r

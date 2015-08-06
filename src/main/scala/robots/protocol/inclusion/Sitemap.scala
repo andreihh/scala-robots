@@ -8,7 +8,7 @@ import scala.xml.XML
 /**
  * Abstract class that represents a sitemap.
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 sealed abstract class Sitemap {
   /**

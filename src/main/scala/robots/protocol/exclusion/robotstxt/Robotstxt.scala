@@ -9,7 +9,7 @@ import scala.util.Try
  *
  * @param sitemaps Sequence containing all sitemaps listed in this robotstxt
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 final class Robotstxt private (
     agentRules: Map[String, RuleSet],

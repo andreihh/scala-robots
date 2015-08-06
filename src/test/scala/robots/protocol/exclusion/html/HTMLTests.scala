@@ -7,7 +7,7 @@ import java.net.URL
 import scala.io.Source
 
 /**
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 class HTMLTests extends FunSuite {
   def getContent(name: String): String = {

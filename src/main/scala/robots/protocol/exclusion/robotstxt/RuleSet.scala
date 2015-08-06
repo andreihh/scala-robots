@@ -8,7 +8,7 @@ import scala.util.matching.Regex
  * with greater priority is applied (the priority is equal to the length of the
  * originating path pattern from the robotstxt file).
  *
- * @author andrei
+ * @author Andrei Heidelbacher
  */
 final class RuleSet private (
     allowedPaths: Seq[RuleSet.Pattern],
